@@ -1,0 +1,17 @@
+tools:
+  agent: true
+  ask: true
+  edit_file: true
+  glob: true
+  grep: true
+  read_file: true
+  run_command: true
+  skill: true
+  web_search: true
+  write_file: true
+permissions:
+  read_file: true
+  write_file: true
+allowed_commands:
+  - git:*
+  - gh:*

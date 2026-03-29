@@ -147,4 +147,5 @@ approved.
 1. Push the branch to the remote: `git push -u origin <branch-name>`.
 2. Create the PR using `gh pr create` with the approved title and body. Use a HEREDOC to pass the
    body for correct formatting.
+    **Do not use temporary files for the PR title or body.**
 3. Report the PR URL to the user.
