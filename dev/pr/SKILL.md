@@ -66,14 +66,32 @@ If no template is found, use the default structure from Step 5.
 
 ### Step 4 — GitHub Issue Linking
 
-Use `ask` to ask the user about GitHub issue linking. You MUST present exactly these
-three options in exactly this order — do not omit, reorder, or rephrase any option:
+**Before asking the user, try to infer the issue number automatically:**
+
+1. **Branch name:** Parse the current branch name for a number that looks like an issue reference.
+   Branch names following the convention `<type>/<number>-<description>` (e.g. `feat/42-add-search`,
+   `fix/137-login-timeout`) contain the issue number as the first numeric segment after the `/`.
+2. **Conversation context:** Check whether a GitHub issue URL or number has already been mentioned
+   earlier in the conversation.
+
+**If a candidate issue number was found**, present it as a suggestion using `ask`:
+
+> Link this PR to GitHub issue **#\<number\>**?
+>
+> - **1. Yes** — link to #\<number\>
+> - **2. Yes, but a different issue** — provide a different GitHub issue URL or number
+> - **3. No, create one** — create a GitHub issue for the work being carried out
+> - **4. No** — skip issue linking entirely
+
+**If no candidate issue number was found**, use `ask` with the standard options:
 
 - **1. Yes** — provide an existing GitHub issue URL or number
 - **2. No, create one** — create a GitHub issue for the work being carried out
 - **3. No** — skip issue linking entirely
 
-**If "Yes":**
+Handle each response:
+
+**If accepting the suggested issue or providing one:**
 
 Note the issue number. Include it in the PR description.
 
