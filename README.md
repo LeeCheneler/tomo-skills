@@ -4,7 +4,7 @@ Skill sets for [Tomo](https://github.com/LeeCheneler/tomo).
 
 ## Skill Sets
 
-### Dev
+### `dev`
 
 Skills for day-to-day development workflows.
 
