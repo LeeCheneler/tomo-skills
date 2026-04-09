@@ -51,9 +51,17 @@ Save the PR number, base branch name, and head branch name from `gh pr view` out
 Run: `gh pr checks <pr-number>`
 
 - **All passed**: Continue to Step 3.
-- **Any failed**: Report the failures and stop. Do NOT merge.
+- **Any failed**: **Stop immediately. Do NOT merge and do NOT ask the user whether to override.** Report each failed check by name along with its conclusion and details URL so the user can investigate. Example format:
+
+  ```
+  CI has failed — not merging. Failed checks:
+  - <check name> (<conclusion>) — <details URL>
+  - <check name> (<conclusion>) — <details URL>
+  ```
+
+  This is a hard stop. The user must fix the failures and re-run the skill.
 - **In progress**: Poll every 30 seconds, up to 10 minutes. If still not complete, inform the user and stop.
-- **No checks configured**: Warn the user and ask for confirmation before proceeding.
+- **No checks configured**: Warn the user and ask for confirmation before proceeding. (This is the one confirmation pause this skill keeps — merging with no CI at all is genuinely risky and worth the friction.)
 
 ### Step 3 — Merge
 
